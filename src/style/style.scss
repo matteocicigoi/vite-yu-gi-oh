@@ -1,0 +1,6 @@
+@use 'partials/variables.scss' as *;
+@use 'partials/reset.scss' as *;
+@use 'partials/font.scss' as *;
+body{
+    background-color: $bg-body;
+}

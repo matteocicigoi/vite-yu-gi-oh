@@ -1,1 +1,1 @@
-# Template Struttura vite + vue
+# Esercizio Vite Yu-Gi-Oh

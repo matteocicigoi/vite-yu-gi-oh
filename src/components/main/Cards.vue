@@ -1,11 +1,13 @@
 <script>
 import NumberCards from './NumberCards.vue';
 import Card from './Card.vue';
+import Loading from './Loading.vue';
 import { store } from '/src/store';
 export default {
     components : {
         NumberCards,
-        Card
+        Card,
+        Loading
     },
     data(){
         return {
@@ -17,7 +19,10 @@ export default {
 <template>
     <div class="cards">
         <NumberCards />
-        <Card v-for="card in store.cards" :title="card.name" :type="card.archetype === undefined ? card.type : card.archetype" :img="card.card_images[0].image_url"/>
+        <Loading v-if="store.loading"/>
+        <template v-else>
+            <Card v-for="card in store.cards" :title="card.name" :type="card.archetype === undefined ? card.type : card.archetype" :img="card.card_images[0].image_url"/>
+        </template>
     </div>
 </template>
 <style scoped lang="scss">

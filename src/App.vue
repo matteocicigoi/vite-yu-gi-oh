@@ -17,18 +17,24 @@ export default {
     },
     methods : {
         getCard(){
+            store.loading = true;
             axios.get(store.url).then((response) => {
             store.cards = response.data.data;
+            store.loading = false;
             });
         },
         getArcheTypes(){
+            store.loading = true;
             axios.get(store.urlType).then((response) => {
             store.archeTypes = response.data;
+            store.loading = false;
             });
         },
         getFilteredTypes(){
+            store.loading = true;
             axios.get(store.urlFilter + store.type).then((response) => {
             store.cards = response.data.data;
+            store.loading = false;
             });
         },
         searchType(){

@@ -12,13 +12,38 @@ export default {
     },
     data() {
         return {
-            store
+            store,
         }
+    },
+    methods : {
+        getCard(){
+            axios.get(store.url).then((response) => {
+            store.cards = response.data.data;
+            });
+        },
+        getArcheTypes(){
+            axios.get(store.urlType).then((response) => {
+            store.archeTypes = response.data;
+            });
+        },
+        getFilteredTypes(){
+            axios.get(store.urlFilter + store.type).then((response) => {
+            store.cards = response.data.data;
+            });
+        },
+        searchType(){
+            if(store.type === ''){
+                this.getCard();
+            }else{
+                this.getFilteredTypes();
+            }
+        }
+    },
+    created() {
+        this.getCard();
+        this.getArcheTypes();
     }
 }
-axios.get(store.url).then((response) => {
-    store.cards = response.data.data;
-})
 </script>
 
 <template>
@@ -26,7 +51,7 @@ axios.get(store.url).then((response) => {
         <Logo />
     </header>
     <main>
-        <Search />
+        <Search :type="store.archeTypes" @find="searchType"/>
         <Cards />
     </main>
 </template>

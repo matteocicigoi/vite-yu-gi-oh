@@ -5,12 +5,17 @@ export default {
         return {
             store
         }
+    },
+    computed : {
+        numbersCard(){
+            return this.store.cards.length;
+        }
     }
 }
 </script>
 <template>
     <div class="numbers">
-        <h4>Found {{ store.cards.length }} cards</h4>
+        <h4>Found {{ numbersCard }} cards</h4>
     </div>
 </template>
 <style scoped lang="scss">

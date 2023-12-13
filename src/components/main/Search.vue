@@ -1,9 +1,21 @@
 <script>
-export default {}
+import { store } from '../../store';
+export default {
+    props : ['type'],
+    data() {
+        return {
+            store,
+        }
+    },
+    updated(){
+        this.$emit('find');
+    }
+}
 </script>
 <template>
-    <select name="type" id="type">
-        <option value="alien">Alien</option>
+    <select name="type" id="type" v-model="store.type">
+        <option value="">Select ArcheType</option>
+        <option v-for="element in type">{{ element.archetype_name }}</option>
     </select>
 </template>
 <style scoped lang="scss">
